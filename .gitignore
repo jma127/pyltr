@@ -1,0 +1,16 @@
+# Compiler/Interpreter Output #
+###############################
+*.py[cod]
+
+# Folders #
+###########
+build/
+dist/
+local/
+*.egg-info/
+
+# Junk #
+########
+.DS_Store*
+.*.swp
+*.swp

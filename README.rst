@@ -1,0 +1,60 @@
+pyltr
+=====
+
+pyltr is a Python learning-to-rank toolkit with ranking models, evaluation
+metrics, data wrangling helpers, and more.
+
+This software is licensed under the BSD 3-clause license (see ``LICENSE.txt``).
+
+The author may be contacted at ``ma127jerry <@t> gmail`` with general
+feedback, questions, or bug reports.
+
+
+Example
+=======
+
+Import pyltr::
+
+    import pyltr
+
+Import a `LETOR
+<http://research.microsoft.com/en-us/um/beijing/projects/letor/>`_ dataset
+(e.g. `MQ2007
+<http://research.microsoft.com/en-us/um/beijing/projects/letor/LETOR4.0/Data/MQ2007.rar>`_
+)::
+
+    with open('train.txt') as trainfile, \
+            open('vali.txt') as valifile, \
+            open('test.txt') as evalfile:
+        TX, Ty, Tqids, _ = pyltr.data.letor.read_dataset(trainfile)
+        VX, Vy, Vqids, _ = pyltr.data.letor.read_dataset(valifile)
+        EX, Ey, Eqids, _ = pyltr.data.letor.read_dataset(evalfile)
+
+Train a `LambdaMART
+<http://research.microsoft.com/pubs/132652/MSR-TR-2010-82.pdf>`_ model, using
+validation set for early stopping and trimming::
+
+    metric = pyltr.metrics.dcg.NDCG(k=10)
+
+    # Only needed if you want to perform validation (early stopping & trimming)
+    monitor = pyltr.models.monitors.ValidationMonitor(
+        VX, Vy, Vqids, metric=metric, stop_after=250)
+
+    model = pyltr.models.lambdamart.LambdaMART(
+        metric=metric,
+        n_estimators=1000,
+        learning_rate=0.02,
+        max_features=0.5,
+        query_subsample=0.5,
+        max_leaf_nodes=10,
+        min_samples_leaf=64,
+        verbose=1,
+    )
+
+    model.fit(TX, ty, Tqids, monitor=monitor)
+
+Evaluate model on test data::
+
+    Epred = model.predict(Ex)
+    print 'Random ranking:', metric.calc_mean_random(Eqids, Ey)
+    print 'Our model:', metric.calc_mean(Eqids, Ey, Epred)

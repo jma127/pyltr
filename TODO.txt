@@ -1,0 +1,14 @@
+- Models
+  - AdaRank
+  - RankNet
+  - LambdaRank
+- Metrics
+  - MAP
+  - P@k
+  - MRR
+  - ERR
+  - Spearman coeff (tau)
+  - Kendall cheff (rho)
+- Documentation
+  - Finish numpy-style documentation.
+  - Setup Sphinx.
