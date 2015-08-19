@@ -2,6 +2,8 @@
 
 DCG and NDCG.
 
+TODO: better docs
+
 """
 
 import numpy as np
@@ -31,7 +33,7 @@ class DCG(Metric):
 
         for i in range(min(n_targets, self.k)):
             for j in range(i + 1, n_targets):
-                deltas[i][j] = coeff * \
+                deltas[i, j] = coeff * \
                     (self._gain_fn(targets[i]) - self._gain_fn(targets[j])) * \
                     (self._get_discount(j) - self._get_discount(i))
 

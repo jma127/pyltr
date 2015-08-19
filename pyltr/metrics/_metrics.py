@@ -23,7 +23,8 @@ class Metric(object):
     def calc_swap_deltas(self, qid, targets):
         """Returns an upper triangular matrix.
 
-        Each (i, j) contains the change in the metric from swapping targets[i, j].
+        Each (i, j) contains the change in the metric from swapping
+        targets[i, j].
 
         Can be overridden for efficiency.
 
@@ -69,7 +70,7 @@ class Metric(object):
         """
         targets = np.copy(targets)
         scores = []
-        for _ in range(50):
+        for _ in range(100):
             np.random.shuffle(targets)
             scores.append(self.evaluate(qid, targets))
         return np.mean(scores)
