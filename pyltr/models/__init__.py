@@ -5,5 +5,5 @@ Various model classes.
 """
 
 from _models import *
-import lambdamart
+from lambdamart import LambdaMART
 import monitors

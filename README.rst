@@ -34,13 +34,13 @@ Train a `LambdaMART
 <http://research.microsoft.com/pubs/132652/MSR-TR-2010-82.pdf>`_ model, using
 validation set for early stopping and trimming::
 
-    metric = pyltr.metrics.dcg.NDCG(k=10)
+    metric = pyltr.metrics.NDCG(k=10)
 
     # Only needed if you want to perform validation (early stopping & trimming)
     monitor = pyltr.models.monitors.ValidationMonitor(
         VX, Vy, Vqids, metric=metric, stop_after=250)
 
-    model = pyltr.models.lambdamart.LambdaMART(
+    model = pyltr.models.LambdaMART(
         metric=metric,
         n_estimators=1000,
         learning_rate=0.02,

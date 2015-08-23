@@ -5,6 +5,6 @@ Various metrics classes.
 """
 
 from _metrics import *
-import dcg
-import err
+from dcg import DCG, NDCG
+from err import ERR
 import gains
