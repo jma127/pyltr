@@ -71,6 +71,7 @@ class TestMetric(object):
                 nulp=self.get_nulp())
 
             # Test that max_k() works.
-            assert_array_almost_equal_nulp(
-                0.0, expected_deltas[m.max_k():, m.max_k():],
-                nulp=self.get_nulp())
+            if m.max_k() is not None:
+                assert_array_almost_equal_nulp(
+                    0.0, expected_deltas[m.max_k():, m.max_k():],
+                    nulp=self.get_nulp())
