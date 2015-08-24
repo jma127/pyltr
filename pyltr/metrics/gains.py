@@ -4,7 +4,10 @@ Gain evaluators (usually used with DCG-like metrics).
 
 """
 
-import numpy as np
+import math
+
+
+_LOG2 = math.log(2.0)
 
 
 def identity_gain(x):
@@ -12,7 +15,7 @@ def identity_gain(x):
 
 
 def exp2_gain(x):
-    return np.exp2(x) - 1.0
+    return math.exp(x * _LOG2) - 1.0
 
 
 def get_gain_fn(name, **args):
