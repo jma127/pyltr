@@ -16,12 +16,14 @@ _EPS = np.finfo(np.float64).eps
 
 
 class ERR(Metric):
-    def __init__(self, highest_score, k=10, gain_type='exp2', sub=1.0):
+    def __init__(self, highest_score, k=10, gain_type='exp2', add_num=0.0,
+                 add_denom=1.0):
         super(ERR, self).__init__()
         self.highest_score = highest_score
         self.k = k
         self.gain_type = gain_type
-        self.sub = sub
+        self.add_num = add_num
+        self.add_denom = add_denom
         self._gain_fn = gains.get_gain_fn(gain_type)
         self._highest_gain = self._gain_fn(self.highest_score)
 
@@ -77,4 +79,7 @@ class ERR(Metric):
         return self.k
 
     def _get_satisfied_prob(self, t):
-        return max(0.0, (self._gain_fn(t) - self.sub) / self._highest_gain)
+        return max(
+            0.0,
+            ((self._gain_fn(t) + self.add_num) /
+             (self._highest_gain + self.add_denom)))
