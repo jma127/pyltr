@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-nosetests -v pyltr
+PYTHONPATH=.:$PYTHONPATH nosetests -v pyltr
