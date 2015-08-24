@@ -60,6 +60,42 @@ Evaluate model on test data::
     print 'Our model:', metric.calc_mean(Eqids, Ey, Epred)
 
 
+Features
+========
+
+Below are some of the features currently implemented in pyltr.
+
+
+Models
+------
+* LambdaMART (``pyltr.models.LambdaMART``)
+
+  - Validation & early stopping
+
+  - Query subsampling
+
+
+Metrics
+-------
+* (N)DCG (``pyltr.metrics.DCG``, ``pyltr.metrics.NDCG``)
+
+  - pow2 and identity gain functions
+
+* ERR (``pyltr.metrics.ERR``)
+
+  - pow2 and identity gain functions
+
+* (M)AP (``pyltr.metrics.AP``)
+
+
+Data Wrangling
+--------------
+* Data loaders (e.g. ``pyltr.data.letor.read``)
+
+* Query groupers and validators
+  (``pyltr.util.group.check_qids``, ``pyltr.util.group.get_groups``)
+
+
 Running Tests
 =============
 
