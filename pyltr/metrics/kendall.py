@@ -8,6 +8,7 @@ TODO: better docs
 
 import numpy as np
 from . import Metric
+from overrides import overrides
 from sklearn.externals.six.moves import range
 
 
@@ -18,6 +19,7 @@ class KendallTau(Metric):
     def __init__(self):
         super(KendallTau, self).__init__()
 
+    @overrides
     def evaluate(self, qid, targets):
         n_targets = len(targets)
         if n_targets < 2:

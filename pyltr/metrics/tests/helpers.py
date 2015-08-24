@@ -12,7 +12,6 @@ Essentially, all you need to do is:
 """
 
 import numpy as np
-
 from numpy.testing import assert_approx_equal, assert_array_almost_equal_nulp
 
 
