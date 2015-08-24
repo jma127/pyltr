@@ -12,4 +12,11 @@ setup(
     package_data={
         '': ['*.txt', '*.rst'],
     },
+
+    install_requires=[
+        'numpy',
+        'overrides',
+        'scipy',
+        'sklearn',
+    ],
 )
