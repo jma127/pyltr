@@ -16,7 +16,7 @@ import sys
 import os
 import shlex
 
-sys.path.insert(0, os.path.abspath('../pyltr'))
+sys.path.insert(0, os.path.abspath('../'))
 print sys.path
 
 # If extensions (or modules to document with autodoc) are in another directory,
