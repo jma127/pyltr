@@ -26,6 +26,7 @@ from . import AdditiveModel
 from .. import metrics
 from ..util.group import check_qids, get_groups
 from ..util.sort import get_sorted_y_positions
+from overrides import overrides
 from sklearn.externals.six.moves import range
 
 
@@ -140,14 +141,14 @@ class LambdaMART(AdditiveModel):
         Parameters
         ----------
 
-        X : array-like, shape = [n_samples, n_features]
+        X : array_like, shape = [n_samples, n_features]
             Training vectors, where n_samples is the number of samples
             and n_features is the number of features.
-        y : array-like, shape = [n_samples]
+        y : array_like, shape = [n_samples]
             Target values (integers in classification, real numbers in
             regression)
             For classification, labels must correspond to classes.
-        qids : array-like, shape = [n_samples]
+        qids : array_like, shape = [n_samples]
             Query ids for each sample. Samples must be grouped by query such
             that all queries with the same qid appear in one contiguous block.
         monitor : callable, optional
@@ -201,6 +202,7 @@ class LambdaMART(AdditiveModel):
 
         return self
 
+    @overrides
     def predict(self, X):
         X = sklearn.utils.validation.check_array(
             X, dtype=sklearn.tree._tree.DTYPE, order='C')
@@ -213,6 +215,7 @@ class LambdaMART(AdditiveModel):
 
         return score.ravel()
 
+    @overrides
     def iter_y_delta(self, i, X):
         assert i >= 0 and i < self.estimators_fitted_
 
@@ -224,6 +227,7 @@ class LambdaMART(AdditiveModel):
 
         return score.ravel()
 
+    @overrides
     def trim(self, n):
         assert n <= self.estimators_fitted_
 

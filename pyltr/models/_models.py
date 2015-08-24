@@ -12,7 +12,7 @@ class Model(object):
 
         Parameters
         ----------
-        X : array-like of shape = [n_samples, n_features]
+        X : array_like of shape = [n_samples, n_features]
             The input samples.
 
         Returns
@@ -29,17 +29,15 @@ class AdditiveModel(Model):
     def iter_y_delta(self, i, X):
         """Calculates target deltas for one iteration of the model.
 
-        Only supported on additive models.
-
         Parameters
         ----------
         i : iteration for which to get deltas
-        X : array-like of shape = [n_samples, n_features]
+        X : array_like of shape = [n_samples, n_features]
             The input samples.
 
         Returns
         -------
-        y_delta : array of shape [n_samples]
+        y_delta : array of shape = [n_samples]
             y_delta[j] = ensemble[:i + 1](X[j]) - ensemble[:i](X[j])
 
         """
