@@ -156,8 +156,8 @@ class LambdaMART(AdditiveModel):
             ``_fit_stages`` as keyword arguments ``callable(i, self,
             locals())``. If the callable returns ``True`` the fitting procedure
             is stopped. The monitor can be used for various things such as
-            computing held-out estimates, early stopping, model introspect, and
-            snapshoting.
+            computing held-out estimates, early stopping, model introspecting,
+            and snapshoting.
 
         """
 
