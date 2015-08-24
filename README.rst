@@ -58,3 +58,9 @@ Evaluate model on test data::
     Epred = model.predict(Ex)
     print 'Random ranking:', metric.calc_mean_random(Eqids, Ey)
     print 'Our model:', metric.calc_mean(Eqids, Ey, Epred)
+
+
+Running Tests
+=============
+
+Use the ``run_tests.sh`` script to run all unit tests.
