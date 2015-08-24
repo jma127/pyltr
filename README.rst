@@ -87,6 +87,8 @@ Metrics
 
 * (M)AP (``pyltr.metrics.AP``)
 
+* Kendall's Tau (``pyltr.metrics.KendallTau``)
+
 
 Data Wrangling
 --------------
