@@ -29,6 +29,10 @@ class TestMetric(object):
         """Queries to test for methods except evaluate()."""
         raise NotImplementedError()
 
+    def get_nulp(self):
+        """NULP value for assertions."""
+        return 99
+
     def test_evaluate(self):
         m = self.get_metric()
         for id, (q, v) in enumerate(self.get_queries_with_values()):
@@ -53,17 +57,20 @@ class TestMetric(object):
 
             # Test that diagonal is 0.
             assert_array_almost_equal_nulp(
-                0.0, np.diagonal(expected_deltas), nulp=99)
+                0.0, np.diagonal(expected_deltas), nulp=self.get_nulp())
 
             # Test that the expected deltas are symmetric.
             assert_array_almost_equal_nulp(
-                expected_deltas.transpose(), expected_deltas, nulp=99)
+                expected_deltas.transpose(), expected_deltas,
+                nulp=self.get_nulp())
 
             # Test that deltas computed by the metric match the deltas from
             # evaluate().
             assert_array_almost_equal_nulp(
-                np.triu(expected_deltas), deltas, nulp=99)
+                np.triu(expected_deltas), deltas,
+                nulp=self.get_nulp())
 
             # Test that max_k() works.
             assert_array_almost_equal_nulp(
-                0.0, expected_deltas[m.max_k():, m.max_k():], nulp=99)
+                0.0, expected_deltas[m.max_k():, m.max_k():],
+                nulp=self.get_nulp())
