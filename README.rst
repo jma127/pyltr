@@ -102,3 +102,10 @@ Running Tests
 =============
 
 Use the ``run_tests.sh`` script to run all unit tests.
+
+
+Building Docs
+=============
+
+``cd`` into the ``docs/`` directory and run ``make html``. Docs are generated
+in the ``docs/_build`` directory.
