@@ -53,6 +53,8 @@ class DCG(Metric):
         return np.array([1.0 / np.log2(i + 2.0) for i in xrange(n)])
 
     def _get_discount(self, i):
+        if i >= self.k:
+            return 0.0
         while i >= len(self._discounts):
             self._grow_discounts()
         return self._discounts[i]
