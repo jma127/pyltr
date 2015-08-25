@@ -1,6 +1,6 @@
 """
 
-Testing for (Normalized) DCG metric.
+Testing for Expected Reciprocal Rank metric.
 
 """
 
