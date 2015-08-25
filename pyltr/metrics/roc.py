@@ -38,3 +38,25 @@ class AUCROC(Metric):
                 cnt += right_unrel
 
         return cnt / float(total_num_rel * (n_targets - total_num_rel))
+
+    @overrides
+    def calc_swap_deltas(self, qid, targets):
+        n_targets = len(targets)
+        deltas = np.zeros((n_targets, n_targets))
+        rel = np.array(targets) >= self.cutoff
+        total_num_rel = sum(rel)
+
+        if total_num_rel == 0 or total_num_rel == n_targets:
+            return deltas
+
+        denom = total_num_rel * float(n_targets - total_num_rel)
+        for i in range(n_targets):
+            irel = rel[i]
+            for j in range(i + 1, n_targets):
+                jrel = rel[j]
+                if not irel and jrel:
+                    deltas[i, j] = (j - i) / denom
+                elif irel and not jrel:
+                    deltas[i, j] = (i - j) / denom
+
+        return deltas
