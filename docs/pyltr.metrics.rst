@@ -44,6 +44,13 @@ pyltr.metrics.kendall module
     :undoc-members:
     :show-inheritance:
 
+pyltr.metrics.roc module
+----------------------------
+
+.. automodule:: pyltr.metrics.roc
+    :members:
+    :undoc-members:
+    :show-inheritance:
 
 Module contents
 ---------------
