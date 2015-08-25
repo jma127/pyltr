@@ -36,13 +36,11 @@ class Metric(object):
         Each (i, j) contains the change in the metric from swapping
         targets[i, j].
 
-        Can be overridden for efficiency.
-
         Parameters
         ----------
-        qid: object
+        qid : object
             See `evaluate`.
-        targets: array_like of shape = [n_targets]
+        targets : array_like of shape = [n_targets]
             See `evaluate`.
 
         Returns
@@ -109,8 +107,7 @@ class Metric(object):
     def calc_random_ev(self, qid, targets):
         """Calculates the expectied value of the metric on randomized targets.
 
-        The default implementation may be overriden with something smarter
-        than repeated shuffles.
+        This implementation just averages the metric over 100 shuffles.
 
         Parameters
         ----------
