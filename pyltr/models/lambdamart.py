@@ -36,10 +36,12 @@ class LambdaMART(AdditiveModel):
     Parameters
     ----------
 
+    metric : object
+        The metric to be maximized by the model.
     learning_rate : float, optional (default=0.1)
         Shrinks the contribution of each tree by `learning_rate`.
         There is a trade-off between learning_rate and n_estimators.
-    n_estimators : int (default=100)
+    n_estimators : int, optional (default=100)
         The number of boosting stages to perform. Gradient boosting
         is fairly robust to over-fitting so a large number usually
         results in better performance.
@@ -56,7 +58,8 @@ class LambdaMART(AdditiveModel):
     subsample : float, optional (default=1.0)
         The fraction of samples to be used for fitting the individual base
         learners. I have no idea why one would set this to something lower than
-        one, but whatever.
+        one, and results will probably be strange if this is changed from the
+        default.
     query_subsample : float, optional (default=1.0)
         The fraction of queries to be used for fitting the individual base
         learners.
@@ -80,11 +83,11 @@ class LambdaMART(AdditiveModel):
         Best nodes are defined as relative reduction in impurity.
         If None then unlimited number of leaf nodes.
         If not None then ``max_depth`` will be ignored.
-    verbose : int, default: 0
+    verbose : int, optional (default=0)
         Enable verbose output. If 1 then it prints progress and performance
         once in a while (the more trees the lower the frequency). If greater
         than 1 then it prints progress and performance for every tree.
-    warm_start : bool, default: False
+    warm_start : bool, optional (default=False)
         When set to ``True``, reuse the solution of the previous call to fit
         and add more estimators to the ensemble, otherwise, just erase the
         previous solution.
@@ -240,10 +243,13 @@ class LambdaMART(AdditiveModel):
     @property
     def feature_importances_(self):
         """Return the feature importances (the higher, the more important the
-           feature).
+        feature).
+
         Returns
         -------
         feature_importances_ : array, shape = [n_features]
+            Array of summed variance reductions.
+
         """
         if self.estimators_ is None or len(self.estimators_) == 0:
             raise NotFittedError("Estimator not fitted, call `fit` before"
