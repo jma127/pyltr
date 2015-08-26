@@ -89,6 +89,8 @@ Metrics
 
 * Kendall's Tau (``pyltr.metrics.KendallTau``)
 
+* AUC-ROC -- Area under the ROC curve (``pyltr.metrics.AUCROC``)
+
 
 Data Wrangling
 --------------
