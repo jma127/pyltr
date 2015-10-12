@@ -504,7 +504,7 @@ class LambdaMART(AdditiveModel):
             if 0. < self.max_features <= 1.:
                 max_features = max(int(self.max_features * self.n_features), 1)
             else:
-                raise ValueError("max_features must be in (0, n_features]")
+                raise ValueError("max_features must be in (0,1]")
 
         self.max_features_ = max_features
 
