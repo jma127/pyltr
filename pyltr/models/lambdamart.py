@@ -378,7 +378,7 @@ class LambdaMART(AdditiveModel):
         query_idx = np.arange(n_queries)
         q_inbag = max(1, int(self.query_subsample * n_queries))
 
-        criterion = sklearn.tree._tree.FriedmanMSE(1)
+        criterion = sklearn.tree.tree.CRITERIA_REG['friedman_mse'](1)
         splitter = sklearn.tree._tree.PresortBestSplitter(
             criterion, self.max_features_, self.min_samples_leaf,
             0.0,  # min_weight_leaf
