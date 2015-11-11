@@ -324,7 +324,7 @@ class LambdaMART(AdditiveModel):
         y_pred += tree.value[terminal_regions, 0, 0] * self.learning_rate
 
     def _fit_stage(self, i, X, y, qids, y_pred, sample_weight, sample_mask,
-                   query_groups, criterion, splitter, random_state):
+                   query_groups, random_state):
         """Fit another tree to the boosting model."""
         assert sample_mask.dtype == np.bool
 
@@ -339,8 +339,9 @@ class LambdaMART(AdditiveModel):
             all_deltas[a:b] = deltas
 
         tree = sklearn.tree.DecisionTreeRegressor(
-            criterion=criterion,
-            splitter=splitter,
+            criterion='friedman_mse',
+            splitter='best',
+            presort=True,
             max_depth=self.max_depth,
             min_samples_split=self.min_samples_split,
             min_samples_leaf=self.min_samples_leaf,
@@ -378,12 +379,6 @@ class LambdaMART(AdditiveModel):
         query_idx = np.arange(n_queries)
         q_inbag = max(1, int(self.query_subsample * n_queries))
 
-        criterion = sklearn.tree.tree.CRITERIA_REG['friedman_mse'](1)
-        splitter = sklearn.tree._tree.PresortBestSplitter(
-            criterion, self.max_features_, self.min_samples_leaf,
-            0.0,  # min_weight_leaf
-            random_state)
-
         if self.verbose:
             verbose_reporter = _VerboseReporter(self.verbose)
             verbose_reporter.init(self, begin_at_stage)
@@ -413,7 +408,6 @@ class LambdaMART(AdditiveModel):
 
             y_pred = self._fit_stage(i, X, y, qids, y_pred, sample_weight,
                                      sample_mask, query_groups_to_use,
-                                     criterion, splitter,
                                      random_state)
 
             train_total_score, oob_total_score = 0.0, 0.0
