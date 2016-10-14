@@ -1,6 +1,7 @@
 # Compiler/Interpreter Output #
 ###############################
 *.py[cod]
+__pycache__/
 
 # Folders #
 ###########
@@ -9,9 +10,14 @@ build/
 dist/
 local/
 *.egg-info/
+.idea/
 
 # Junk #
 ########
 .DS_Store*
 .*.swp
 *.swp
+
+# Installation Files #
+######################
+files.txt
