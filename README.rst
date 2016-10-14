@@ -51,7 +51,7 @@ validation set for early stopping and trimming::
         verbose=1,
     )
 
-    model.fit(TX, ty, Tqids, monitor=monitor)
+    model.fit(TX, Ty, Tqids, monitor=monitor)
 
 Evaluate model on test data::
 
