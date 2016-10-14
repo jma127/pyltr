@@ -4,4 +4,4 @@ Various data wrangling utilities.
 
 """
 
-import letor
+from . import letor

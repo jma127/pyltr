@@ -17,6 +17,7 @@ setup(
         'numpy',
         'overrides',
         'scipy',
-        'sklearn',
+        'scikit-learn',
     ],
+    zip_safe=True
 )
