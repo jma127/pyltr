@@ -13,6 +13,9 @@ setup(
         '': ['*.txt', '*.rst'],
     },
 
+    setup_requires=[
+        'scipy',
+    ],
     install_requires=[
         'numpy',
         'overrides',
