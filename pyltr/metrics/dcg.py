@@ -9,11 +9,10 @@ TODO: better docs
 import numpy as np
 from . import gains, Metric
 from overrides import overrides
-from sklearn.externals.six.moves import range
-
+from sklearn.externals.six import moves
 
 _EPS = np.finfo(np.float64).eps
-
+range = moves.range
 
 class DCG(Metric):
     def __init__(self, k=10, gain_type='exp2'):
@@ -54,7 +53,7 @@ class DCG(Metric):
 
     @classmethod
     def _make_discounts(self, n):
-        return np.array([1.0 / np.log2(i + 2.0) for i in xrange(n)])
+        return np.array([1.0 / np.log2(i + 2.0) for i in range(n)])
 
     def _get_discount(self, i):
         if i >= self.k:

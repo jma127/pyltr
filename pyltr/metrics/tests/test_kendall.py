@@ -4,7 +4,7 @@ Testing for Kendall's Tau metric.
 
 """
 
-import helpers
+from . import helpers
 import itertools
 import numpy as np
 import pyltr

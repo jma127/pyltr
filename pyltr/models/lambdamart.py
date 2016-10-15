@@ -540,7 +540,7 @@ class _VerboseReporter(object):
     def update(self, j, est, monitor_output):
         """Update reporter with new iteration. """
         if monitor_output is True:
-            print 'Early termination at iteration', j
+            print('Early termination at iteration ', j)
             return
         do_query_oob = est.query_subsample < 1
         # we need to take into account if we fit additional estimators.
