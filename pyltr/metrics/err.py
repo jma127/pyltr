@@ -8,7 +8,6 @@ TODO: better docs
 
 import numpy as np
 from . import gains, Metric
-from overrides import overrides
 from sklearn.externals.six import moves
 
 range = moves.range
@@ -27,7 +26,6 @@ class ERR(Metric):
         self._gain_fn = gains.get_gain_fn(gain_type)
         self._highest_gain = self._gain_fn(self.highest_score)
 
-    @overrides
     def evaluate(self, qid, targets):
         residual = 1.0
         result = 0.0
@@ -40,7 +38,6 @@ class ERR(Metric):
                 break
         return result
 
-    @overrides
     def calc_swap_deltas(self, qid, targets):
         n_targets = len(targets)
         deltas = np.zeros((n_targets, n_targets))
@@ -77,7 +74,6 @@ class ERR(Metric):
 
         return deltas
 
-    @overrides
     def max_k(self):
         return self.k
 

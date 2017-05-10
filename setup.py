@@ -2,10 +2,10 @@ from setuptools import setup, find_packages
 
 setup(
     name='pyltr',
-    version='0.1.0',
+    version='0.2.0',
     description='Python learning to rank (LTR) toolkit.',
     author='Jerry Ma',
-    author_email='jerryma@nospam',
+    author_email='jerry_nospam@example.org',
     license='BSD-new',
 
     packages=find_packages(),
@@ -18,9 +18,8 @@ setup(
     ],
     install_requires=[
         'numpy',
-        'overrides',
         'scipy',
         'scikit-learn',
     ],
-    zip_safe=True
+    zip_safe=True,
 )

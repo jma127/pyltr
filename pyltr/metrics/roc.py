@@ -8,7 +8,6 @@ TODO: better docs
 
 import numpy as np
 from . import Metric
-from overrides import overrides
 from sklearn.externals.six.moves import range
 
 
@@ -17,7 +16,6 @@ class AUCROC(Metric):
         super(AUCROC, self).__init__()
         self.cutoff = cutoff
 
-    @overrides
     def evaluate(self, qid, targets):
         n_targets = len(targets)
         total_num_rel = 0
@@ -39,7 +37,6 @@ class AUCROC(Metric):
 
         return cnt / float(total_num_rel * (n_targets - total_num_rel))
 
-    @overrides
     def calc_swap_deltas(self, qid, targets):
         n_targets = len(targets)
         deltas = np.zeros((n_targets, n_targets))

@@ -8,7 +8,6 @@ TODO: better docs
 
 import numpy as np
 from . import Metric
-from overrides import overrides
 from sklearn.externals.six.moves import range
 
 
@@ -18,7 +17,6 @@ class AP(Metric):
         self.k = k
         self.cutoff = cutoff
 
-    @overrides
     def evaluate(self, qid, targets):
         num_rel = 0
         total_prec = 0.0
@@ -28,7 +26,6 @@ class AP(Metric):
                 total_prec += num_rel / (i + 1.0)
         return (total_prec / num_rel) if num_rel > 0 else 0.0
 
-    @overrides
     def calc_swap_deltas(self, qid, targets):
         n_targets = len(targets)
         deltas = np.zeros((n_targets, n_targets))
@@ -87,6 +84,5 @@ class AP(Metric):
 
         return deltas
 
-    @overrides
     def max_k(self):
         return self.k

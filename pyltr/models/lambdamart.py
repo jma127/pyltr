@@ -26,7 +26,6 @@ from . import AdditiveModel
 from .. import metrics
 from ..util.group import check_qids, get_groups
 from ..util.sort import get_sorted_y_positions
-from overrides import overrides
 from sklearn.externals.six.moves import range
 
 
@@ -205,7 +204,6 @@ class LambdaMART(AdditiveModel):
 
         return self
 
-    @overrides
     def predict(self, X):
         X = sklearn.utils.validation.check_array(
             X, dtype=sklearn.tree._tree.DTYPE, order='C')
@@ -218,7 +216,6 @@ class LambdaMART(AdditiveModel):
 
         return score.ravel()
 
-    @overrides
     def iter_y_delta(self, i, X):
         assert i >= 0 and i < self.estimators_fitted_
 
@@ -230,7 +227,6 @@ class LambdaMART(AdditiveModel):
 
         return score.ravel()
 
-    @overrides
     def trim(self, n):
         assert n <= self.estimators_fitted_
 

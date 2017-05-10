@@ -8,7 +8,6 @@ TODO: better docs
 
 import numpy as np
 from . import gains, Metric
-from overrides import overrides
 from sklearn.externals.six import moves
 
 _EPS = np.finfo(np.float64).eps
@@ -22,12 +21,10 @@ class DCG(Metric):
         self._gain_fn = gains.get_gain_fn(gain_type)
         self._discounts = self._make_discounts(256)
 
-    @overrides
     def evaluate(self, qid, targets):
         return sum(self._gain_fn(t) * self._get_discount(i)
                    for i, t in enumerate(targets) if i < self.k)
 
-    @overrides
     def calc_swap_deltas(self, qid, targets, coeff=1.0):
         n_targets = len(targets)
         deltas = np.zeros((n_targets, n_targets))
@@ -40,11 +37,9 @@ class DCG(Metric):
 
         return deltas
 
-    @overrides
     def max_k(self):
         return self.k
 
-    @overrides
     def calc_random_ev(self, qid, targets):
         total_gains = sum(self._gain_fn(t) for t in targets)
         total_discounts = sum(self._get_discount(i)
@@ -74,12 +69,10 @@ class NDCG(Metric):
         self._dcg = DCG(k=k, gain_type=gain_type)
         self._ideals = {}
 
-    @overrides
     def evaluate(self, qid, targets):
         return (self._dcg.evaluate(qid, targets) /
                 max(_EPS, self._get_ideal(qid, targets)))
 
-    @overrides
     def calc_swap_deltas(self, qid, targets):
         ideal = self._get_ideal(qid, targets)
         if ideal < _EPS:
@@ -87,11 +80,9 @@ class NDCG(Metric):
         return self._dcg.calc_swap_deltas(
             qid, targets, coeff=1.0 / ideal)
 
-    @overrides
     def max_k(self):
         return self.k
 
-    @overrides
     def calc_random_ev(self, qid, targets):
         return (self._dcg.calc_random_ev(qid, targets) /
                 max(_EPS, self._get_ideal(qid, targets)))
