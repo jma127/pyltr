@@ -5,7 +5,8 @@ setup(
     version='0.2.0',
     description='Python learning to rank (LTR) toolkit.',
     author='Jerry Ma',
-    author_email='jerry_nospam@example.org',
+    author_email='jerryma_nospam@example.org',
+    url='https://github.com/jma127/pyltr',
     license='BSD-new',
 
     packages=find_packages(),
@@ -21,5 +22,6 @@ setup(
         'scipy',
         'scikit-learn',
     ],
+
     zip_safe=True,
 )
