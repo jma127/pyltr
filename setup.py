@@ -5,7 +5,7 @@ setup(
     version='0.2.0',
     description='Python learning to rank (LTR) toolkit.',
     author='Jerry Ma',
-    author_email='jma127@users.noreply.github.com',
+    author_email='jmnospam@mail.com',
     url='https://github.com/jma127/pyltr',
     license='BSD-new',
 
