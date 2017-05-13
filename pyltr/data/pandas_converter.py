@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-class Letor_Converter(object):    
+class Pandas_Converter(object):    
     '''
     Class Converter implements parsing from original letor txt files to
     pandas data frame representation.
