@@ -1,6 +1,13 @@
 pyltr
 =====
 
+|pypi version| |Build status|
+
+.. |pypi version| image:: https://img.shields.io/pypi/v/pyltr.svg
+   :target: https://pypi.python.org/pypi/pyltr
+.. |Build status| image:: https://secure.travis-ci.org/jma127/pyltr.svg
+   :target: http://travis-ci.org/jma127/pyltr
+
 pyltr is a Python learning-to-rank toolkit with ranking models, evaluation
 metrics, data wrangling helpers, and more.
 
