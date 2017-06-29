@@ -18,12 +18,14 @@ class AP(Metric):
         self.cutoff = cutoff
 
     def evaluate(self, qid, targets):
+        n_targets = len(targets)
         num_rel = 0
         total_prec = 0.0
-        for i in range(min(len(targets), self.k)):
+        for i in range(n_targets):
             if targets[i] >= self.cutoff:
                 num_rel += 1
-                total_prec += num_rel / (i + 1.0)
+                if i < self.k:
+                    total_prec += num_rel / (i + 1.0)
         return (total_prec / num_rel) if num_rel > 0 else 0.0
 
     def calc_swap_deltas(self, qid, targets):
@@ -31,10 +33,11 @@ class AP(Metric):
         deltas = np.zeros((n_targets, n_targets))
         total_num_rel = 0
         total_metric = 0.0
-        for i in range(min(n_targets, self.k)):
+        for i in range(n_targets):
             if targets[i] >= self.cutoff:
                 total_num_rel += 1
-                total_metric += total_num_rel / (i + 1.0)
+                if i < self.k:
+                    total_metric += total_num_rel / (i + 1.0)
         metric = (total_metric / total_num_rel) if total_num_rel > 0 else 0.0
 
         num_rel_i = 0
