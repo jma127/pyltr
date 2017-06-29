@@ -1,0 +1,7 @@
+The below is a list of those who have submitted at least one approved commit
+to pyltr.
+
+Jerry Ma
+Luca Soldaini
+Simon Stiebellehner
+Songwei Ge

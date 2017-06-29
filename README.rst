@@ -118,3 +118,14 @@ Building Docs
 
 ``cd`` into the ``docs/`` directory and run ``make html``. Docs are generated
 in the ``docs/_build`` directory.
+
+
+Contributing
+============
+
+Quality contributions or bugfixes are gratefully accepted. When submitting a
+pull request, please update ``AUTHOR.txt`` so you can be recognized for your
+work :).
+
+By submitting a Github pull request, you consent to have your submitted code
+released under the terms of the project's license (see ``LICENSE.txt``).
