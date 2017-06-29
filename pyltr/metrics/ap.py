@@ -26,7 +26,7 @@ class AP(Metric):
                 total_prec += num_rel / (i + 1.0)
         return (total_prec / num_rel) if num_rel > 0 else 0.0
 
-def calc_swap_deltas(self, qid, targets):
+    def calc_swap_deltas(self, qid, targets):
         n_targets = len(targets)
         deltas = np.zeros((n_targets, n_targets))
         total_num_rel = 0
@@ -52,9 +52,7 @@ def calc_swap_deltas(self, qid, targets):
                     else:
                         add = (num_rel_j / (j + 1.0)) if j < self.k else 0.0
                         new_total_metric = total_metric + add - sub
-                        new_num_rel = (total_num_rel
-                                       if j < self.k
-                                       else (total_num_rel - 1))
+                        new_num_rel = total_num_rel
                         new_metric = ((new_total_metric / new_num_rel)
                                       if new_num_rel > 0
                                       else 0.0)
@@ -70,9 +68,7 @@ def calc_swap_deltas(self, qid, targets):
                                if j < self.k
                                else 0.0)
                         new_total_metric = total_metric + add - sub
-                        new_num_rel = (total_num_rel
-                                       if j < self.k
-                                       else (total_num_rel + 1))
+                        new_num_rel = total_num_rel
                         new_metric = ((new_total_metric / new_num_rel)
                                       if new_num_rel > 0
                                       else 0.0)
