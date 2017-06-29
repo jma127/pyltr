@@ -42,7 +42,7 @@ class AP(Metric):
             if targets[i] >= self.cutoff:
                 num_rel_i += 1
                 num_rel_j = num_rel_i
-                sub = num_rel_i / (i + 1.0)
+                sub = 1 / (i + 1.0)
 
                 for j in range(i + 1, n_targets):
                     if targets[j] >= self.cutoff:
@@ -50,8 +50,10 @@ class AP(Metric):
                             num_rel_j += 1
                             sub += 1 / (j + 1.0)
                     else:
-                        add = (num_rel_j / (j + 1.0)) if j < self.k else 0.0
-                        new_total_metric = total_metric + add - sub
+                        #add = (num_rel_j / (j + 1.0)) if j < self.k else 0.0
+                        new_total_metric = total_metric - sub
+                        if j < self.k:
+                            sub += 1 / (j + 1.0)
                         new_num_rel = (total_num_rel
                                        if j < self.k
                                        else (total_num_rel - 1))
@@ -62,14 +64,10 @@ class AP(Metric):
 
             else:
                 num_rel_j = num_rel_i
-                add = (num_rel_i + 1) / (i + 1.0)
-
+                add = 1 / (i + 1.0)
                 for j in range(i + 1, n_targets):
-                    if targets[j] >= self.cutoff:
-                        sub = (((num_rel_j + 1) / (j + 1.0))
-                               if j < self.k
-                               else 0.0)
-                        new_total_metric = total_metric + add - sub
+                    if targets[j] < self.cutoff:
+                        new_total_metric = total_metric + add
                         new_num_rel = (total_num_rel
                                        if j < self.k
                                        else (total_num_rel + 1))
@@ -81,7 +79,9 @@ class AP(Metric):
                         if j < self.k:
                             num_rel_j += 1
                             add += 1 / (j + 1.0)
-
+                    else:
+                        if j < self.k:
+                            add += 1 / (j + 1.0)
         return deltas
 
     def max_k(self):
