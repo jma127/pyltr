@@ -52,9 +52,7 @@ class AP(Metric):
                     else:
                         add = (num_rel_j / (j + 1.0)) if j < self.k else 0.0
                         new_total_metric = total_metric + add - sub
-                        new_num_rel = (total_num_rel
-                                       if j < self.k
-                                       else (total_num_rel - 1))
+                        new_num_rel = total_num_rel
                         new_metric = ((new_total_metric / new_num_rel)
                                       if new_num_rel > 0
                                       else 0.0)
@@ -70,9 +68,7 @@ class AP(Metric):
                                if j < self.k
                                else 0.0)
                         new_total_metric = total_metric + add - sub
-                        new_num_rel = (total_num_rel
-                                       if j < self.k
-                                       else (total_num_rel + 1))
+                        new_num_rel = total_num_rel
                         new_metric = ((new_total_metric / new_num_rel)
                                       if new_num_rel > 0
                                       else 0.0)
