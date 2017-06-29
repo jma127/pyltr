@@ -66,7 +66,7 @@ class AP(Metric):
                 num_rel_j = num_rel_i
                 add = 1 / (i + 1.0)
                 for j in range(i + 1, n_targets):
-                    if targets[j] < self.cutoff:
+                    if targets[j] >= self.cutoff:
                         new_total_metric = total_metric + add
                         new_num_rel = (total_num_rel
                                        if j < self.k
