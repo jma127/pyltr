@@ -5,3 +5,4 @@ Jerry Ma
 Luca Soldaini
 Simon Stiebellehner
 Songwei Ge
+Cheng Rui

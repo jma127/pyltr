@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='pyltr',
-    version='0.2.3',
+    version='0.2.4',
     description='Python learning to rank (LTR) toolkit.',
     author='Jerry Ma',
     author_email='jmnospam@mail.com',
