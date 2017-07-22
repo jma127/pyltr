@@ -14,6 +14,8 @@ class ValidationMonitor(object):
     """Monitor for early stopping via validation set."""
     def __init__(self, X, y, qids, metric, stop_after=100,
                  trim_on_stop=True):
+        if len(X) == 0:
+            raise ValueError("A validation set can not be empty!")
         self.X, self.y = sklearn.utils.check_X_y(
             X, y, dtype=sklearn.tree._tree.DTYPE)
         self.qids = qids
