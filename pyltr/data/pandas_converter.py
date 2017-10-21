@@ -1,3 +1,4 @@
+#%%
 import pandas as pd
 
 
@@ -10,17 +11,22 @@ class PandasLetorConverter(object):
     def __init__(self, path):
         '''
         Arguments:
-            path: path to letor txt file
+            path (str): path to letor txt file
         '''
-        self._path = path
+        self.path = path
+
 
     @property
     def path(self):
         return self._path
 
+
     @path.setter
     def path(self, p):
+        if type(p) is not str:
+            raise TypeError('path must be of type str')
         self._path = p
+
 
     def _load_file(self):
         '''
@@ -30,6 +36,7 @@ class PandasLetorConverter(object):
             letor txt file parsed to csv in raw format
         '''
         return pd.read_csv(str(self._path), sep=" ", header=None)
+
 
     def _drop_col(self, df):
         '''
@@ -42,6 +49,7 @@ class PandasLetorConverter(object):
             df: original df with last column dropped
         '''
         return df.drop(df.columns[-1], axis=1)
+
 
     def _split_colon(self, df):
         '''
@@ -59,6 +67,7 @@ class PandasLetorConverter(object):
         df.columns = ['rel', 'qid'] + [str(x) for x in range(1,len(df.columns)-1)] # renaming cols
         return df
 
+
     def convert(self):
         '''
         Performs final conversion.
@@ -66,6 +75,6 @@ class PandasLetorConverter(object):
         Return:
             fully converted pandas dataframe
         '''
-        df_raw = self._load_file(self._path)
+        df_raw = self._load_file()
         df_drop = self._drop_col(df_raw)
         return self._split_colon(df_drop)
