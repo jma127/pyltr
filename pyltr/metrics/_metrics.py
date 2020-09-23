@@ -1,5 +1,5 @@
 import numpy as np
-from sklearn.externals.six.moves import range
+from six.moves import range
 from ..util.group import check_qids, get_groups
 from ..util.sort import get_sorted_y
 

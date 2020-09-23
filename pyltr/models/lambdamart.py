@@ -26,7 +26,7 @@ from . import AdditiveModel
 from .. import metrics
 from ..util.group import check_qids, get_groups
 from ..util.sort import get_sorted_y_positions
-from sklearn.externals.six.moves import range
+from six.moves import range
 
 
 class LambdaMART(AdditiveModel):
@@ -475,7 +475,7 @@ class LambdaMART(AdditiveModel):
             raise ValueError("query_subsample must be in (0,1] but "
                              "was %r" % self.query_subsample)
 
-        if isinstance(self.max_features, sklearn.externals.six.string_types):
+        if isinstance(self.max_features, six.string_types):
             if self.max_features == "auto":
                 max_features = self.n_features
             elif self.max_features == "sqrt":
