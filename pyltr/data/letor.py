@@ -5,8 +5,8 @@ Various utilities for converting data from/to Microsoft's LETOR format.
 """
 
 import numpy as np
-import sklearn.externals.six
-from sklearn.externals.six.moves import range
+import six
+from six.moves import range
 
 
 def iter_lines(lines, has_targets=True, one_indexed=True, missing=0.0):
@@ -100,7 +100,7 @@ def read_dataset(source, has_targets=True, one_indexed=True, missing=0.0):
         Comment vector (see `iter_lines`).
 
     """
-    if isinstance(source, sklearn.externals.six.string_types):
+    if isinstance(source, six.string_types):
         source = source.splitlines()
 
     max_width = 0

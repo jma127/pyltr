@@ -8,7 +8,7 @@ TODO: better docs
 
 import numpy as np
 from . import Metric
-from sklearn.externals.six.moves import range
+from six.moves import range
 
 
 class AP(Metric):

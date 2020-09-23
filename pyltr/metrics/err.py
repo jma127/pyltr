@@ -8,7 +8,7 @@ TODO: better docs
 
 import numpy as np
 from . import gains, Metric
-from sklearn.externals.six import moves
+from six import moves
 
 range = moves.range
 _EPS = np.finfo(np.float64).eps

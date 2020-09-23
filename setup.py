@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='pyltr',
-    version='0.2.4',
+    version='0.2.5',
     description='Python learning to rank (LTR) toolkit.',
     author='Jerry Ma',
     author_email='jmnospam@mail.com',
@@ -22,6 +22,7 @@ setup(
         'pandas',
         'scipy',
         'scikit-learn',
+        'six',
     ],
 
     zip_safe=True,
