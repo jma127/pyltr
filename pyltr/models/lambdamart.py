@@ -26,6 +26,7 @@ from . import AdditiveModel
 from .. import metrics
 from ..util.group import check_qids, get_groups
 from ..util.sort import get_sorted_y_positions
+import six
 from six.moves import range
 
 
