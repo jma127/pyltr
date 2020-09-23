@@ -22,6 +22,7 @@ setup(
         'pandas',
         'scipy',
         'scikit-learn',
+        'six',
     ],
 
     zip_safe=True,
