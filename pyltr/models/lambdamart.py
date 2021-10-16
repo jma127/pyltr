@@ -338,7 +338,6 @@ class LambdaMART(AdditiveModel):
         tree = sklearn.tree.DecisionTreeRegressor(
             criterion='friedman_mse',
             splitter='best',
-            presort=True,
             max_depth=self.max_depth,
             min_samples_split=self.min_samples_split,
             min_samples_leaf=self.min_samples_leaf,
